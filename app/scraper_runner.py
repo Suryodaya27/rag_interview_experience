@@ -48,4 +48,4 @@ class ScraperRunner:
                         if embeddings:
                             await insert_post_async(post["link"], chunk, embeddings)
 
-        add_company(self.company)
+        add_company(self.company.lower())

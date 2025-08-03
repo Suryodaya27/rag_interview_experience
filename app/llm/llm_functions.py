@@ -109,11 +109,14 @@ def summarize_content(content):
 
 
 
-def create_embeddings(content):
-    time.sleep(1)  # Simulate delay for embedding creation
-    response = ollama.embeddings(
-        model='bge-m3:latest',
-        prompt=content
+async def create_embeddings(content):
+    loop = asyncio.get_event_loop()
+    response = await loop.run_in_executor(
+        None,
+        lambda: ollama.embeddings(
+            model='bge-m3:latest',
+            prompt=content
+        )
     )
     embedding = response['embedding']
     return embedding

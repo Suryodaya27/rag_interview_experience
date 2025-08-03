@@ -1,8 +1,18 @@
 version: '3.8'
 
 services:
+  scraper_api:
+    build:
+      context: .             # Path to the directory containing Dockerfile
+      dockerfile: Dockerfile  # Optional: name of the Dockerfile (if it's named Dockerfile, this line can be skipped)
+    container_name: scraper_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
   postgres:
-    image: ankane/pgvector  # includes pgvector extension
+    image: ankane/pgvector
     container_name: pgvector-db
     environment:
       POSTGRES_USER: postgres

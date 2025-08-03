@@ -1,4 +1,5 @@
 import psycopg2
+import asyncio
 
 def insert_post(link, summary, embedding):
     conn = psycopg2.connect(
@@ -21,3 +22,7 @@ def insert_post(link, summary, embedding):
     finally:
         cur.close()
         conn.close()
+
+async def insert_post_async(link, summary, embedding):
+    loop = asyncio.get_event_loop()
+    await loop.run_in_executor(None, insert_post, link, summary, embedding)

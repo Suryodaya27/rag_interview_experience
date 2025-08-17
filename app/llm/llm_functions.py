@@ -122,7 +122,7 @@ async def create_embeddings(content):
     return embedding
 
 
-def generate_answer_with_context(query, context_chunks, model="gemma3:4b"):
+def generate_answer_with_context(query, context_chunks, model="gemma3:1b"):
     context_text = "\n\n".join([chunk["summary"] for chunk in context_chunks])
 
     prompt = f"""
